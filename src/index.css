@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.highcharts-credits, .highcharts-xaxis{
+  display: none !important;
+}
+.ct-chart > div > div > svg,
+.ct-chart > div > div,
+.ct-chart > div{
+  height: 90px !important;
+  width: 100% !important;
+}
+.dashboard .card-block{
+  padding-bottom: 0;
+}

@@ -1,43 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/images/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <title>RentMe Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/custom-dash.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/select2.min.css">
+  <!-- Font-awesome web fonts with css -->
+  <link href="assets/css/fontawesome-all.css" rel="stylesheet" type="text/css" />
+  <!-- End layout styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+
+</head>
+
+<body>
+  <div id="root"></div>
+
+
+
+
+  <!-- plugins:js -->
+  <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="assets/js/off-canvas.js"></script>
+  <script src="assets/js/hoverable-collapse.js"></script>
+  <script src="assets/js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page -->
+  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/todolist.js"></script>
+  <!-- End custom js for this page -->
+  <!-- Custom js for this page -->
+  <script src="assets/js/file-upload.js"></script>
+
+  <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+  <script>
+    CKEDITOR.replace('editor1');
+  </script>
+
+
+  <script src="assets/js/select2.full.min.js"></script>
+
+  <script>
+    $(function () {
+      $("#select-new").select2();
+      $("#select-new1").select2();
+      $("#select-new2").select2();
+      $("#select-new3").select2();
+      $("#select-new4").select2();
+      $("#select-new5").select2();
+    });
+  </script>
+
+
+
+  <script src="assets/js/jquery.nice-select.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('select:not(.ignore)').niceSelect();      
+      FastClick.attach(document.body);
+    });    
+  </script> -->
+
+
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $(function () {
+      $("#datepicker").datepicker();
+      $("#datepicker1").datepicker();
+      $("#datepicker2").datepicker();
+      $("#datepicker3").datepicker();
+      $("#datepicker4").datepicker();
+      $("#datepicker5").datepicker();
+      $("#datepicker6").datepicker();
+      $("#datepicker7").datepicker();
+      $("#datepicker8").datepicker();
+      $("#datepicker9").datepicker();
+    });
+  </script>
+  <script>
+    $('#datepicker1').datepicker({
+      changeMonth: false,
+      changeYear: true,
+      showButtonPanel: true,
+      dateFormat: 'yy',
+      onClose: function (dateText, inst) {
+        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+        $(this).datepicker('setDate', new Date(year, 0, 1));
+      }
+    });
+  </script>
+
+
+  <!-- <script>
+  $(document).ready(function(){
+      // Open modal on page load
+      $("#addnursenoteModal").modal('show');
+
+      // Close modal on button click
+      $(".btn").click(function(){
+          $("#addnursenoteModal").modal('hide');
+      });
+  });
+</script> -->
+</body>
+
 </html>
