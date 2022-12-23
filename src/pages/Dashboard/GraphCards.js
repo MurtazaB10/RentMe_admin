@@ -85,7 +85,7 @@ function GraphCards({ dashboardData }) {
                     Sales
                   </div>
                   <span className="grey-700 font-size-30">
-                    {dashboardData.totalAmount}
+                    ₹ {dashboardData.totalAmount}
                   </span>
                 </div>
                 <div className="mb-20 grey-800">

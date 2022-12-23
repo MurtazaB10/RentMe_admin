@@ -63,6 +63,8 @@ function EditProduct(props) {
     formdata.append("manufacturer", manufacturer);
     formdata.append("quantity", quantity);
     formdata.append("category", category);
+    console.log(prod._id);
+    formdata.append("id", prod._id);
     for (let i = 0; i < file.length; i++) formdata.append("file", file[i]);
     const result = await axios
       .post("/admin/edit-product", formdata)

@@ -41,7 +41,9 @@ function OrderList() {
 
   const dateFilter = () => {
     const results = data.filter((expense) => {
-      var date = new Date(expense.createdAt.substring(0, 10)).toLocaleDateString();
+      var date = new Date(
+        expense.createdAt.substring(0, 10)
+      ).toLocaleDateString();
       var sdate = new Date(startDate).toLocaleDateString();
       var edate = new Date(endDate).toLocaleDateString();
       return date >= sdate && date <= edate;
@@ -51,7 +53,9 @@ function OrderList() {
 
   const daily = () => {
     const results = data.filter((expense) => {
-      var date = new Date(expense.createdAt.substring(0, 10)).toLocaleDateString();
+      var date = new Date(
+        expense.createdAt.substring(0, 10)
+      ).toLocaleDateString();
       var tdate = new Date().toLocaleDateString();
       return date === tdate;
     });
@@ -60,7 +64,9 @@ function OrderList() {
 
   const weekly = () => {
     const results = data.filter((expense) => {
-      var date = new Date(expense.createdAt.substring(0, 10)).toLocaleDateString();
+      var date = new Date(
+        expense.createdAt.substring(0, 10)
+      ).toLocaleDateString();
       var tdate = new Date();
       var sdate = new Date();
       sdate.setDate(tdate.getDate() - 6);
@@ -73,7 +79,9 @@ function OrderList() {
 
   const monthly = () => {
     const results = data.filter((expense) => {
-      var date = new Date(expense.createdAt.substring(0, 10)).toLocaleDateString();
+      var date = new Date(
+        expense.createdAt.substring(0, 10)
+      ).toLocaleDateString();
       var tdate = new Date();
       var sdate = new Date();
       sdate.setDate(tdate.getDate() - 29);
@@ -179,20 +187,35 @@ function OrderList() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {dateData&&dateData.map((row) => (
-                      <TableRow>
-                        <TableCell align="center" component="th" scope="row">
-                          {row.user.username}
-                        </TableCell>
-                        <TableCell align="center">{row.createdAt&&row.createdAt.substring(0, 10)}</TableCell>
-                        <TableCell align="center">-null-</TableCell>
-                        <TableCell align="center">{row.returndate&&row.returndate.substring(0, 10)}</TableCell>
-                        <TableCell align="center">{row.razorpay.orderId}</TableCell>
-                        <TableCell align="center">{row.amount}</TableCell>
-                        <TableCell align="center">{row.razorpay.paymentId}</TableCell>
-                    
-                      </TableRow>
-                     ))}
+                      {dateData &&
+                        dateData.map((row) => (
+                          <TableRow>
+                            <TableCell
+                              align="center"
+                              component="th"
+                              scope="row"
+                            >
+                              {row.user.username}
+                            </TableCell>
+                            <TableCell align="center">
+                              {row.createdAt && row.createdAt.substring(0, 10)}
+                            </TableCell>
+                            <TableCell align="center">
+                              {row.createdAt && row.createdAt.substring(0, 10)}
+                            </TableCell>
+                            <TableCell align="center">
+                              {row.returndate &&
+                                row.returndate.substring(0, 10)}
+                            </TableCell>
+                            <TableCell align="center">
+                              {row.razorpay.orderId}
+                            </TableCell>
+                            <TableCell align="center">{row.amount}</TableCell>
+                            <TableCell align="center">
+                              {row.razorpay.paymentId}
+                            </TableCell>
+                          </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
                 </TableContainer>

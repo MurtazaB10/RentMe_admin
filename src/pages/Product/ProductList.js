@@ -13,7 +13,7 @@ import {
 import { setProducts } from "../../redux/actions/productActions";
 import AddProductModal from "./AddProductModal";
 import Snackbar from "../../components/Alert/SnackBar";
-import EditProductModal from './EditProduct';
+import EditProductModal from "./EditProduct";
 function ProductList() {
   const data = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
@@ -37,24 +37,26 @@ function ProductList() {
   }
   const change = (prop) => {
     setProd(prop);
-  }
+  };
   const deleteProduct = async (prop) => {
-    const data = {productId : prop._id};
-    const r = await axios.post("/admin/delete-product",data).then((response) => {
-      setConfirmationSnackbarMessage("Product deleted succesfully!");
-      setConfirmationSnackbarOpen(true);
-      setTrigger(!trigger);
-    })
-    .catch((err) => {
-      setConfirmationSnackbarMessage("Failed to Delete!");
-      setConfirmationSnackbarOpen(true);
-    });
-  }
+    const data = { productId: prop._id };
+    const r = await axios
+      .post("/admin/delete-product", data)
+      .then((response) => {
+        setConfirmationSnackbarMessage("Product deleted succesfully!");
+        setConfirmationSnackbarOpen(true);
+        setTrigger(!trigger);
+      })
+      .catch((err) => {
+        setConfirmationSnackbarMessage("Failed to Delete!");
+        setConfirmationSnackbarOpen(true);
+      });
+  };
 
   const search = () => {
     const res = axios.post(`/product/${nameTerm}`);
     console.log(res);
-  }
+  };
 
   useEffect(() => {
     fetchData();
@@ -63,7 +65,14 @@ function ProductList() {
   useEffect(() => {
     try {
       const results = data.filter((product) => {
-        if (product.name.toLowerCase().includes(nameTerm.toLowerCase()) || product.categoryy.toLowerCase().includes(nameTerm.toLowerCase())||product.description.toLowerCase().includes(nameTerm.toLowerCase())|| product.manufacturer.toLowerCase().includes(nameTerm.toLowerCase())||product.rentalprice.toLowerCase().includes(nameTerm.toLowerCase()) ) return true;
+        if (
+          product.name.toLowerCase().includes(nameTerm.toLowerCase()) ||
+          product.categoryy.toLowerCase().includes(nameTerm.toLowerCase()) ||
+          product.description.toLowerCase().includes(nameTerm.toLowerCase()) ||
+          product.manufacturer.toLowerCase().includes(nameTerm.toLowerCase()) ||
+          product.rentalprice.toLowerCase().includes(nameTerm.toLowerCase())
+        )
+          return true;
         else return false;
       });
       setSearchResults(results);
@@ -103,7 +112,10 @@ function ProductList() {
                           </div>
                         </div>
                         <div className="col-md-3">
-                          <button className="btn btn-gradient-primary w-100" onClick={search}>
+                          <button
+                            className="btn btn-gradient-primary w-100"
+                            onClick={search}
+                          >
                             Search
                           </button>
                         </div>
@@ -127,51 +139,69 @@ function ProductList() {
                 <hr />
 
                 <div class="table-responsive p-3">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th width="20%">name</th>
-                      <th width="20%">Category</th>
-                      <th width="50%">Descriprion</th>
-                      <th width="50%">Manufacturer</th>
-                      <th width="20%">Quantity</th>
-                      <th width="20%">Price</th>
-                      <th width="20%">Deposit</th>
-                      <th width="20%">Image</th>
-                      <th width="20%" class="text-left">
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {searchResults.map((val,ind) => {
-                      console.log(val);
-                      return <tr key={ind}>
-                      <td>{val.name}</td>
-                      <td>{val.categoryy}</td>
-                      <td>{val.description}</td>
-                      <td>{val.manufacturer}</td>
-                      <td>{val.quantity}</td>
-                      <td>{val.rentalprice}</td>
-                      <td>{val.costprice}</td>
-                      <td><img style={{width:'50px',height:'50px'}} src={val.image[0].url}></img></td>
-                      <td>
-                      <div class="edit-icon">
-                          <a data-toggle="modal"
-              data-target="#editProductModal" onClick={() => change(val)} class="white mr-10">
-                            <i class="icon mdi mdi-pencil"></i>
-                          </a>
-                          <a class="white mr-10" onClick={() => deleteProduct(val)}>
-                            <i class="icon mdi mdi-delete"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            {/* </div>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th width="20%">name</th>
+                        <th width="20%">Category</th>
+                        <th width="50%">Descriprion</th>
+                        <th width="50%">Manufacturer</th>
+                        <th width="20%">Quantity</th>
+                        <th width="20%">Price</th>
+                        <th width="20%">Deposit</th>
+                        <th width="20%">Image</th>
+                        <th width="20%" class="text-left">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {searchResults.map((val, ind) => {
+                        console.log(val);
+                        return (
+                          <tr key={ind}>
+                            <td>{val.name}</td>
+                            <td>{val.categoryy}</td>
+                            <td>{val.description}</td>
+                            <td>{val.manufacturer}</td>
+                            <td>{val.quantity}</td>
+                            <td>{val.rentalprice}</td>
+                            <td>{val.costprice}</td>
+                            <td>
+                              <img
+                                style={{ width: "50px", height: "50px" }}
+                                src={
+                                  process.env.REACT_APP_BACKEND_URL +
+                                  "products/" +
+                                  val.image[0]
+                                }
+                              />
+                            </td>
+                            <td>
+                              <div class="edit-icon">
+                                <a
+                                  data-toggle="modal"
+                                  data-target="#editProductModal"
+                                  onClick={() => change(val)}
+                                  class="white mr-10"
+                                >
+                                  <i class="icon mdi mdi-pencil"></i>
+                                </a>
+                                <a
+                                  class="white mr-10"
+                                  onClick={() => deleteProduct(val)}
+                                >
+                                  <i class="icon mdi mdi-delete"></i>
+                                </a>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                {/* </div>
           </div>
         </div>
       </div> */}
@@ -188,9 +218,9 @@ function ProductList() {
         setConfirmationSnackbarOpen={setConfirmationSnackbarOpen}
       />
       <EditProductModal
-          setTrigger={setTrigger}
-          trigger={trigger}
-          prod={prod}
+        setTrigger={setTrigger}
+        trigger={trigger}
+        prod={prod}
         setConfirmationSnackbarMessage={setConfirmationSnackbarMessage}
         setConfirmationSnackbarOpen={setConfirmationSnackbarOpen}
       />

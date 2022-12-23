@@ -10,6 +10,7 @@ const Dashboard = () => {
     try {
       const result = await axios.get("/admin/dashboard");
       setDashboardData(result.data.data);
+      console.log(result.data.data);
     } catch (error) {
       console.error(error);
     }
